@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Signup</h2>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger">
+                {% for message in messages %}
+                    <div>{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <form method="post" class="signup-form">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required class="form-control">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Signup</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    h2 {
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+        font-weight: 300;
+        color: #007bff;
+    }
+    .signup-form {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 1rem;
+    }
+    .form-control:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    }
+    .btn-lg {
+        padding: 12px 24px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .btn {
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .alert {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #dc3545;
+        color: #fff;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+{% endblock %}

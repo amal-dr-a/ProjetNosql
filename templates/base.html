@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Library Management{% endblock %}</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+
+        nav {
+            display: flex;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            margin: 0;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        nav ul li a:hover {
+            background-color: #0056b3;
+        }
+
+        nav ul li a.active {
+            background-color: #004085;
+        }
+
+        .dropdown-menu {
+            background-color: #007bff;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-menu a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Library Management</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="{{ 'active' if request.endpoint == 'index' else '' }}">Home</a></li>
+                {% if current_user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">List <span class="caret"></span></a>
+                        <div class="dropdown-menu">
+                            <a href="{{ url_for('liste_livres') }}" class="{{ 'active' if request.endpoint == 'liste_livres' else '' }}">Books</a>
+                            <a href="{{ url_for('liste_adherents') }}" class="{{ 'active' if request.endpoint == 'liste_adherents' else '' }}">Members</a>
+                        </div>
+                    </li>
+                    <li><a href="{{ url_for('emprunter_livre') }}" class="{{ 'active' if request.endpoint == 'emprunter_livre' else '' }}">Borrow</a></li>
+                    <li><a href="{{ url_for('historique_prets') }}" class="{{ 'active' if request.endpoint == 'historique_prets' else '' }}">History</a></li>
+                    {% if current_user.role == 'admin' %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">New <span class="caret"></span></a>
+                            <div class="dropdown-menu">
+                                <a href="{{ url_for('ajouter_livre') }}" class="{{ 'active' if request.endpoint == 'ajouter_livre' else '' }}">New Book</a>
+                                <a href="{{ url_for('ajouter_adherent') }}" class="{{ 'active' if request.endpoint == 'ajouter_adherent' else '' }}">New Member</a>
+                            </div>
+                        </li>
+                        <li><a href="{{ url_for('retourner_livre') }}" class="{{ 'active' if request.endpoint == 'retourner_livre' else '' }}">Book Return</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}" class="{{ 'active' if request.endpoint == 'login' else '' }}">Login</a></li>
+                    <li><a href="{{ url_for('signup') }}" class="{{ 'active' if request.endpoint == 'signup' else '' }}">Signup</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

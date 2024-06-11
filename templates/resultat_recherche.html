@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Résultat de la Recherche</h2>
+{% if livre %}
+    <p>Titre: {{ livre['titre'] }}</p>
+    <p>Auteur: {{ auteur['nom'] }}</p>
+    <p>Genre: {{ livre.get('genre', 'N/A') }}</p>
+    <p>Résumé: {{ livre.get('resume', 'N/A') }}</p>
+{% else %}
+    <p>Livre non trouvé.</p>
+{% endif %}
+{% endblock %}

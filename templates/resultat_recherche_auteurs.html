@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Résultat de la Recherche</h2>
+{% if auteurs %}
+    <ul>
+    {% for record in auteurs %}
+        <li>Nom: {{ record['a']['nom'] }}, Nationalité: {{ record['a'].get('nationalite', 'N/A') }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun auteur trouvé pour cette nationalité.</p>
+{% endif %}
+{% endblock %}

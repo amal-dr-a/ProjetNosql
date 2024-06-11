@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}Loan History{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Loan History</h2>
+
+    {% if current_user.role == 'admin' %}
+    <form method="get" action="{{ url_for('historique_prets') }}" class="form-inline mb-4 justify-content-center">
+        <div class="form-group mr-2">
+            <label for="username" class="mr-2">Search by Username:</label>
+            <input type="text" id="username" name="username" value="{{ request.args.get('username', '') }}" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    {% endif %}
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Username</th>
+                    <th>Book Title</th>
+                    <th>Loan Date</th>
+                    <th>Return Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pret in prets %}
+                <tr>
+                    <td>{{ pret.username }}</td>
+                    <td>{{ pret.livre_titre }}</td>
+                    <td>{{ pret.date_emprunt.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ pret.date_retour.strftime('%Y-%m-%d') if pret.date_retour else 'Not returned' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    h2 {
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+        font-weight: 300;
+    }
+    .form-inline {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        font-weight: 500;
+        margin-right: 10px;
+    }
+    .form-control {
+        margin-right: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+    }
+    .form-control:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .table-responsive {
+        margin-top: 20px;
+    }
+    .table {
+        width: 100%;
+        margin: 20px 0;
+    }
+    .table th, .table td {
+        padding: 15px;
+        text-align: left;
+    }
+    .table th {
+        background-color: #007bff;
+        color: #fff;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f2f2f2;
+    }
+    .table-hover tbody tr:hover {
+        background-color: #e9ecef;
+    }
+</style>
+{% endblock %}

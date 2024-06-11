@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Liste des Livres Empruntés</h2>
+<table>
+    <tr>
+        <th>Titre du Livre</th>
+        <th>ID de l'Adhérent</th>
+        <th>Date d'Emprunt</th>
+    </tr>
+    {% for pret in livres_empruntes %}
+    <tr>
+        <td>{{ pret.livre_titre }}</td>
+        <td>{{ pret.adherent_id }}</td>
+        <td>{{ pret.date_emprunt }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Liste des Adhérents{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Liste des Adhérents</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for adherent in adherents %}
+                <tr>
+                    <td>{{ adherent.username }}</td>
+                    <td>{{ adherent.role }}</td>
+                    <td>
+                        <a href="{{ url_for('modifier_adherent', username=adherent.username) }}" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <form method="post" action="{{ url_for('supprimer_adherent', username=adherent.username) }}" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .table {
+        margin-top: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .table thead {
+        background-color: #007bff;
+        color: #fff;
+    }
+    .table tbody tr {
+        transition: background-color 0.3s;
+    }
+    .table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+    .btn-outline-primary {
+        color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+    .btn-outline-danger {
+        color: #dc3545;
+        border-color: #dc3545;
+    }
+    .btn-outline-danger:hover {
+        background-color: #dc3545;
+        color: #fff;
+    }
+</style>
+<!-- Include FontAwesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+{% endblock %}

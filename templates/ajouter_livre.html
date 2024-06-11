@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Add a Book{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add a Book</h2>
+    <form method="post" class="ajouter-livre-form">
+        <div class="form-group">
+            <label for="titre">Title:</label>
+            <input type="text" id="titre" name="titre" required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="auteur">Author:</label>
+            <input type="text" id="auteur" name="auteur" required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="resume">Summary:</label>
+            <textarea id="resume" name="resume" class="form-control" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="max_emprunts">Maximum Number of Loans:</label>
+            <input type="number" id="max_emprunts" name="max_emprunts" min="1" value="1" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="quantite_disponible">Available Quantity:</label>
+            <input type="number" id="quantite_disponible" name="quantite_disponible" min="1" value="1" class="form-control">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Add Book</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    h2 {
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+        font-weight: 300;
+    }
+    .ajouter-livre-form {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .form-control:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    }
+    .btn {
+        padding: 12px 24px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .text-center {
+        text-align: center;
+    }
+</style>
+{% endblock %}

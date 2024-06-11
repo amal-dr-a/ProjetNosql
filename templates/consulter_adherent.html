@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Liste des Adhérents</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Adresse</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for adherent in adherents %}
+        <tr>
+            <td>{{ adherent.nom }}</td>
+            <td>{{ adherent.prenom }}</td>
+            <td>{{ adherent.adresse }}</td>
+           
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

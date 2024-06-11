@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Confirmation de Suppression du Livre "{{ titre }}"</h2>
+<p>Êtes-vous sûr de vouloir supprimer ce livre ?</p>
+<button onclick="confirmerSuppression()">Supprimer</button>
+
+<script>
+    function confirmerSuppression() {
+        var confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer ce livre ?");
+        if (confirmation) {
+            window.location.href = "{{ url_for('supprimer_livre', titre=titre) }}";
+        }
+    }
+</script>
+{% endblock %}

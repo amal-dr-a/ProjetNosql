@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Modifier un Livre{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Edit Book</h2>
+    <form method="post" class="form-container">
+        <div class="form-group">
+            <label for="titre">Current title:</label>
+            <input type="text" id="titre" name="titre" required class="form-control" value="{{ titre }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="nouveau_titre">New Title:</label>
+            <input type="text" id="nouveau_titre" name="nouveau_titre" class="form-control" value="{{ livre.titre }}">
+        </div>
+        <div class="form-group">
+            <label for="nouveau_genre">New Genre:</label>
+            <input type="text" id="nouveau_genre" name="nouveau_genre" class="form-control" value="{{ livre.genre }}">
+        </div>
+        <div class="form-group">
+            <label for="nouveau_resume">New Resume:</label>
+            <textarea id="nouveau_resume" name="nouveau_resume" class="form-control" rows="5">{{ livre.resume }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="nouvelle_quantite"> Available Quantity:</label>
+            <input type="number" id="nouvelle_quantite" name="nouvelle_quantite" class="form-control" min="0" value="{{ livre.quantite_disponible }}">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Modifier</button>
+    </form>
+</div>
+
+<style>
+    .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+        font-weight: 300;
+    }
+    .form-group label {
+        font-weight: 500;
+    }
+    .form-control {
+        margin-bottom: 20px;
+        padding: 15px;
+        font-size: 1rem;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
+    .form-control:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    }
+    .btn-block {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+</style>
+{% endblock %}

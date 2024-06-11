@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Historique des Prêts</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Titre du Livre</th>
+            <th>Date d'Emprunt</th>
+            <th>Date de Retour</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for historique in historiques %}
+        <tr>
+            <td>{{ historique.username }}</td>
+            <td>{{ historique.livre_titre }}</td>
+            <td>{{ historique.date_emprunt }}</td>
+            <td>{{ historique.date_retour }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

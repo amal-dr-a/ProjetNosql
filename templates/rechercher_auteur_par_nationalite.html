@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Rechercher un Auteur par Nationalité</h2>
+<form method="post" class="form-container">
+    <div class="form-group">
+        <label for="nationalite">Nationalité:</label>
+        <input type="text" id="nationalite" name="nationalite" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Rechercher</button>
+</form>
+{% endblock %}

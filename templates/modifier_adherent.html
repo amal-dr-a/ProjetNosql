@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+body {
+    background-color: #f8f9fa; /* Light gray background */
+    font-family: 'Arial', sans-serif;
+}
+
+h2 {
+    color: #343a40; /* Dark gray */
+    font-weight: bold;
+}
+
+.modifier-adherent-form {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.form-label {
+    font-weight: bold;
+    color: #495057; /* Slightly darker gray */
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    margin-bottom: 15px; /* Space between inputs */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary blue */
+    border-color: #007bff;
+    width: 100%; /* Full width button */
+    padding: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #0056b3;
+}
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Modifier Adhérent</h2>
+    <form method="post" class="modifier-adherent-form">
+        <div class="form-group">
+            <label for="username" class="form-label">Nom d'utilisateur:</label>
+            <input type="text" id="username" name="username" class="form-control" value="{{ adherent.username }}">
+        </div>
+        <div class="form-group">
+            <label for="nouveau_role" class="form-label">Nouveau rôle:</label>
+            <input type="text" id="nouveau_role" name="nouveau_role" class="form-control" value="{{ adherent.role }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+</div>
+{% endblock %}

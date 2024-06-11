@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Add a Member{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add a Member</h2>
+    <form method="post" action="{{ url_for('ajouter_adherent') }}" class="ajouter-adherent-form">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="role">Role:</label>
+            <select id="role" name="role" class="form-control">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <div class="form-group">
+           <label for="password">Password:</label>
+           <input type="password" id="password" name="password" required class="form-control">
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Add Member</button>
+        </div>
+        {% if error %}
+            <div class="alert alert-danger mt-3" role="alert">{{ error }}</div>
+        {% endif %}
+    </form>
+</div>
+
+<style>
+    .container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    h2 {
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+        font-weight: 300;
+    }
+    .ajouter-adherent-form {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .form-control:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 10px;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .alert {
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}

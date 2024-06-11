@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Recherche d'un Adhérent</h2>
+<form method="post" action="{{ url_for('recherche_adherent') }}">
+    <label for="username">Rechercher par username:</label>
+    <input type="text" id="username" name="username" required>
+    <button type="submit">Rechercher</button>
+</form>
+{% if adherent %}
+<h3>Résultats de la recherche:</h3>
+<p>Username: {{ adherent.username }}</p>
+<p>Role: {{ adherent.role }}</p>
+<a href="{{ url_for('supprimer_adherent', username=adherent.username) }}">Supprimer</a>
+{% endif %}
+{% endblock %}

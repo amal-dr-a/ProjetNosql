@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+{% if adherent %}
+    <h2>Adhérent trouvé</h2>
+    <p>Nom: {{ adherent.nom }}</p>
+    <p>Prénom: {{ adherent.prenom }}</p>
+    <p>Adresse: {{ adherent.adresse }}</p>
+{% else %}
+    <h2>Aucun adhérent trouvé</h2>
+{% endif %}
+{% endblock %}

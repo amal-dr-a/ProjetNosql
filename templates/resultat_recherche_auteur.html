@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Résultat de la Recherche</h2>
+{% if auteur %}
+    <p>Nom: {{ auteur['nom'] }}</p>
+    <p>Nationalité: {{ auteur.get('nationalite', 'N/A') }}</p>
+{% else %}
+    <p>Auteur non trouvé.</p>
+{% endif %}
+{% endblock %}

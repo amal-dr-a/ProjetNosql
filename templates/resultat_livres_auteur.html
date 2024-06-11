@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Livres écrits par {{ auteur }}</h2>
+{% if livres %}
+    <ul>
+    {% for record in livres %}
+        <li>Titre: {{ record['livre']['titre'] }}, Genre: {{ record['livre'].get('genre', 'N/A') }}, Résumé: {{ record['livre'].get('resume', 'N/A') }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun livre trouvé pour cet auteur.</p>
+{% endif %}
+{% endblock %}
