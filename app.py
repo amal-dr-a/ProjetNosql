@@ -10,7 +10,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # Connexion à MongoDB
 mongo_client = MongoClient('localhost', 27017)
 db = mongo_client['bibliotheque']
-prets_collection = db['loans']
+prets_collection = db['prets1']
 users_collection = db['users']
 # Collection pour les utilisateurs
 
@@ -18,7 +18,7 @@ users_collection = db['users']
 driver = GraphDatabase.driver('bolt://localhost:7687', auth=("neo4j", "password"))
 
 app = Flask(__name__)
-app.secret_key = 'abc'  # Définir le secret_key
+app.secret_key = 'abc'  # Définir la secret_key
 app.config['SECRET_KEY'] = 'abc'
 app.config['SESSION_TYPE'] = 'filesystem'
 
