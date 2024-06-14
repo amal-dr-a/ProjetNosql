@@ -126,8 +126,7 @@ def ajouter_livre():
         genre = request.form.get('genre')
         resume = request.form.get('resume')
         max_emprunts = int(request.form.get('max_emprunts', 1))
-        quantite_disponible = int(
-            request.form.get('quantite_disponible', max_emprunts))  # Ajouter la quantité disponible
+        quantite_disponible = int(request.form.get('quantite_disponible', max_emprunts))  # Ajouter la quantité disponible
 
         with driver.session() as session:
             result = session.run("MATCH (a:Auteur {nom: $auteur}) RETURN a", auteur=auteur)
@@ -151,7 +150,8 @@ def ajouter_livre():
                 "quantite_disponible": quantite_disponible
             })
 
-        return redirect(url_for('index'))
+        flash('Livre ajouté avec succès.', 'success')
+        return redirect(url_for('ajouter_livre'))
     return render_template('ajouter_livre.html')
 
 
@@ -367,8 +367,6 @@ def historique_prets():
 
     return render_template('historique_prets.html', prets=prets)
 
-    return render_template('historique_prets.html', prets=prets)
-
 
 @app.route('/liste_adherents')
 @login_required
@@ -379,8 +377,6 @@ def liste_adherents():
 
 
 # Route pour supprimer un adhérent
-
-
 @app.route('/supprimer_adherent/<username>', methods=['GET', 'POST'])
 @login_required
 @admin_required
@@ -390,7 +386,6 @@ def supprimer_adherent(username):
 
 
 # Route pour modifier un adhérent
-
 @app.route('/modifier_adherent/<username>', methods=['GET', 'POST'])
 @login_required
 @admin_required

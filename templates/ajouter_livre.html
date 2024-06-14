@@ -4,6 +4,17 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="text-center mb-4">Add a Book</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert-container">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
     <form method="post" class="ajouter-livre-form">
         <div class="form-group">
             <label for="titre">Title:</label>
@@ -89,6 +100,20 @@
     }
     .text-center {
         text-align: center;
+    }
+    .alert-container {
+        margin-bottom: 20px;
+    }
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+    .alert-success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
     }
 </style>
 {% endblock %}
